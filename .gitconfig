@@ -1,0 +1,68 @@
+[user]
+  name = Levy Fekete
+  email = levy.fekete@gmail.com
+[color]
+  ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = green
+  changed = cyan
+  untracked = yellow
+
+[core]
+  autocrlf = input
+  editor = atom
+
+  # Make `git rebase` safer on OS X
+  # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+  trustctime = false
+  pager =
+  excludesfile = /Users/levy/.gitignore_global
+
+[push]
+  default = simple
+
+[alias]
+  # Logs
+  l = log --pretty=format:"%C(yellow)%h\\ %Creset%s%Cblue\\ [%cn]%Creset" --decorate -n 20 --graph --abbrev-commit
+  # Status
+  st = status -s
+  # Add --all
+  aa = add --all
+  # Commit
+  ci = commit
+  # Checkout
+  co = checkout
+  # Add all and commit with message
+  cm = !git add -A && git commit -m
+  # Changes from last commit
+  df = diff --cached HEAD^
+  # Undo last commit
+  undo = reset HEAD~1 --mixed
+  # Amend last commit
+  amend = commit -a --amend
+  # Show available aliases
+  alias = config --get-regexp 'alias.*'
+
+[diff]
+  tool = Kaleidoscope
+[difftool]
+  prompt = false
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+  path = /usr/local/bin
+[merge]
+  tool = Kaleidoscope
+[mergetool]
+  prompt = false
+[mergetool "Kaleidoscope"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustexitcode = true
